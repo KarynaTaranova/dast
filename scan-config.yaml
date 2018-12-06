@@ -1,0 +1,49 @@
+basic:
+  target_host: $host
+  target_port: $port
+  protocol: $protocol
+  project_name: $project_name
+  environment: $environment
+  html_report: true
+  junit_report: true
+  sslyze: true
+  masscan:
+    inclusions: 0-65535
+    exclusions: 80,443
+  zap:
+    scan_types: xss,sqli
+
+tools:
+  target_host: $host
+  target_port: $port
+  protocol: $protocol
+  project_name: $project_name
+  environment: $environment
+  html_report: true
+  junit_report: true
+  sslyze: true
+  masscan:
+    inclusions: 0-65535
+  nmap:
+    inclusions: T:0-65535
+    nse_scripts: ssl-date,http-mobileversion-checker,http-robots.txt
+    params: -v -A
+  zap:
+    scan_types: all,sqli,xss
+  nikto:
+    param: -Plugins "@@ALL;-@@EXTRAS;-sitefiles;tests(report:500)" -T 123x
+  w3af:
+    config_file: /tmp/w3af_full_audit.w3af
+
+
+long_running:
+  target_host: $host
+  target_port: $port
+  protocol: $protocol
+  project_name: $project_name
+  environment: $environment
+  html_report: true
+  w3af:
+    config_file: /tmp/w3af_full_audit.w3af
+
+
