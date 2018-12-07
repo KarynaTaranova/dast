@@ -1,6 +1,8 @@
 # DUSTY 
 *Combination of tools for DAST Scanning*
 
+![](https://dockerbuildbadges.quelltext.eu/status.svg?organization=getcarrier&repository=dast)
+
 ### Quick and easy start
 These simple steps will run blind DAST scan against your application and generate html and xml report with some low hanging fruits
 
