@@ -24,6 +24,7 @@ tools:
   sslyze: true
   masscan:
     inclusions: 0-65535
+    exclusions: 443
   nmap:
     inclusions: T:0-65535
     nse_scripts: ssl-date,http-mobileversion-checker,http-robots.txt
@@ -31,7 +32,7 @@ tools:
   zap:
     scan_types: all,sqli,xss
   nikto:
-    param: -Plugins "@@ALL;-@@EXTRAS;-sitefiles;tests(report:500)" -T 123x
+    param: -Plugins @@ALL;-@@EXTRAS;-sitefiles;tests(report:500) -T 123x
   w3af:
     config_file: /tmp/w3af_full_audit.w3af
 
