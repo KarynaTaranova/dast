@@ -47,6 +47,7 @@ basic: # Name of the scan
   protocol: $protocol         # http or https
   project_name: $project_name # the name of the project used in reports
   environment: $environment   # literal name of environment (e.g. prod/stage/etc.)
+  langugage: ruby             # the language of application to be scanned
   
   # Reporting configuration section (all report types are optional)
   html_report: true           # do you need an html report (true/false)
@@ -65,6 +66,7 @@ basic: # Name of the scan
     issue_type: Bug           # Jira issue type (Default: Bug)
     labels: some,label        # Comaseparated list of lables for ticket
     watchers: another.dude    # Comaseparated list of Jira IDs for watchers
+    jira_epic_key: XYZC-123   # Jira epic key (or id)
     
   # Scanners configurtion section (you can use only what you need)
   sslyze: true                # set to `true` in order to scan for ssl errors
