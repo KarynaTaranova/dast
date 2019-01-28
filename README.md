@@ -99,10 +99,7 @@ basic: # Name of the scan
     qualys_scanner_type: INTERNAL | EXTERNAL 
     # In case you use INTERNAL you will need:
     qualys_scanner: NAME_OF_SCANNER
-  ptai:
-    # name of html report that to create jira tickets from
-    report_name: NAME_OF_REPORT 
-    
+  
 ```
 configuration can be mounted to container like 
 ```
@@ -116,24 +113,3 @@ User need to fill `false_positive.config` file with titles of false-positive iss
 ```
 
 ##### Please note that `scan-config.yaml` and `false_positive.config` included for demo purposes
-
-### Creating jira tickets from PT AI html report
-
-Please mount folder, that contains PT AI html report, to /tmp/reports docker volume.
-
-#### scan-config.yaml example
-```
-ptai # Name of the scan
-  jira:
-    url: https://jira.com     # Url to Jira
-    username: some.dude       # User to create tickets
-    password: password        # password to user in Jira
-    jira_project: XYZC        # Jira project ID
-    assignee: some.dude       # Jira id of default assignee
-    issue_type: Bug           # Jira issue type (Default: Bug)
-    labels: some,label        # Comaseparated list of lables for ticket
-    watchers: another.dude    # Comaseparated list of Jira IDs for watchers
-    jira_epic_key: XYZC-123   # Jira epic key (or id) 
-  ptai:
-    # name of html report that to create jira tickets from
-    report_name: NAME_OF_REPORT
