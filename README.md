@@ -65,7 +65,18 @@ basic: # Name of the scan
     issue_type: Bug           # Jira issue type (Default: Bug)
     labels: some,label        # Comaseparated list of lables for ticket
     watchers: another.dude    # Comaseparated list of Jira IDs for watchers
-    
+  emails:
+    smtp_server: smtp.office.com    # smtp server address
+    port: 587                       # smtp server port
+    login: some_user@epam.com       # smtp user autentification
+    password: password              # smtp user password
+    receivers_email_list:           # list receivers
+            ['user1@epam.com', 'user2epam.com']  
+    subject: some text              # email subject
+    body: some text                 # email body (text or html)
+    attach_html_report: True        # add report to attachments
+    attachments: ['1.txt', '2.pdf'] # mounted to /attachments folder (optional)
+      
   # Scanners configurtion section (you can use only what you need)
   sslyze: true                # set to `true` in order to scan for ssl errors
   nmap:                       # nmap configuration
