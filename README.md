@@ -70,12 +70,13 @@ basic: # Name of the scan
     port: 587                       # smtp server port
     login: some_user@epam.com       # smtp user autentification
     password: password              # smtp user password
-    receivers_email_list:           # list receivers
-            ['user1@epam.com', 'user2epam.com']  
+    receivers_email_list:           # string with list receivers, separated ', '
+      'user1@epam.com, user2epam.com' 
     subject: some text              # email subject
     body: some text                 # email body (text or html)
     attach_html_report: True        # add report to attachments
-    attachments: ['1.txt', '2.pdf'] # mounted to /attachments folder (optional)
+    attachments: '1.txt, 2.pdf'     # mounted to /attachments folder (optional)
+                                    # string attachments file names, separated ', '
       
   # Scanners configurtion section (you can use only what you need)
   sslyze: true                # set to `true` in order to scan for ssl errors
