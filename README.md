@@ -65,6 +65,7 @@ basic: # Name of the scan
     issue_type: Bug           # Jira issue type (Default: Bug)
     labels: some,label        # Comaseparated list of lables for ticket
     watchers: another.dude    # Comaseparated list of Jira IDs for watchers
+    jira_epic_key: XYZC-123   # Jira epic key (or id)
   emails:
     smtp_server: smtp.office.com    # smtp server address
     port: 587                       # smtp server port
@@ -109,8 +110,7 @@ basic: # Name of the scan
     qualys_scanner_type: INTERNAL | EXTERNAL 
     # In case you use INTERNAL you will need:
     qualys_scanner: NAME_OF_SCANNER
-    
-    
+  
 ```
 configuration can be mounted to container like 
 ```
