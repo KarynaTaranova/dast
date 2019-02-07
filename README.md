@@ -66,18 +66,23 @@ basic: # Name of the scan
     labels: some,label        # Comaseparated list of lables for ticket
     watchers: another.dude    # Comaseparated list of Jira IDs for watchers
     jira_epic_key: XYZC-123   # Jira epic key (or id)
+    min_priority: Major       # Min priority level to create jira ticket.
+                              # default - Trivial
   emails:
     smtp_server: smtp.office.com    # smtp server address
     port: 587                       # smtp server port
     login: some_user@epam.com       # smtp user autentification
     password: password              # smtp user password
-    receivers_email_list:           # string with list receivers, separated ', '
+    receivers_email_list:           # string with receivers list, separated ', '
       'user1@epam.com, user2epam.com' 
     subject: some text              # email subject
     body: some text                 # email body (text or html)
     attach_html_report: True        # add report to attachments
     attachments: '1.txt, 2.pdf'     # mounted to /attachments folder (optional)
                                     # string attachments file names, separated ', '
+    open_states: XYZ                # string with open states list of issues,
+                                    # that will be shown in the email,
+                                    # separated ', '. default [Open, In Progress]
       
   # Scanners configurtion section (you can use only what you need)
   sslyze: true                # set to `true` in order to scan for ssl errors
