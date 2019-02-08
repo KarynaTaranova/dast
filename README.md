@@ -71,7 +71,7 @@ basic: # Name of the scan
   emails:
     smtp_server: smtp.office.com    # smtp server address
     port: 587                       # smtp server port
-    login: some_user@epam.com       # smtp user autentification
+    login: some_user       # smtp user autentification
     password: password              # smtp user password
     receivers_email_list:           # string with receivers list, separated ', '
       'user1@epam.com, user2epam.com' 
