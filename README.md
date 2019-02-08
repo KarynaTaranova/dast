@@ -67,7 +67,7 @@ basic: # Name of the scan
     watchers: another.dude    # Comaseparated list of Jira IDs for watchers
     jira_epic_key: XYZC-123   # Jira epic key (or id)
     min_priority: Major       # Min priority level to create jira ticket.
-                              # default - Trivial
+                              # default - Major
   emails:
     smtp_server: smtp.office.com    # smtp server address
     port: 587                       # smtp server port
