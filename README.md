@@ -74,7 +74,7 @@ basic: # Name of the scan
     login: some_user@example.com    # smtp user autentification
     password: password              # smtp user password
     receivers_email_list:           # string with receivers list, separated ', '
-      'user1@epam.com, user2epam.com' 
+      'user1@example.com, user2@example.com' 
     subject: some text              # email subject
     body: some text                 # email body (text or html)
     attach_html_report: True        # add report to attachments
