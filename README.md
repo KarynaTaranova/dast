@@ -47,6 +47,9 @@ basic: # Name of the scan
   protocol: $protocol         # http or https
   project_name: $project_name # the name of the project used in reports
   environment: $environment   # literal name of environment (e.g. prod/stage/etc.)
+  min_priority: Major         # Min priority level to process vulnerability.
+                              # default - Major
+                              # possible: Trivial, Minor, Major, Critical, Blocker
   
   # Reporting configuration section (all report types are optional)
   html_report: true           # do you need an html report (true/false)
@@ -66,8 +69,6 @@ basic: # Name of the scan
     labels: some,label        # Comaseparated list of lables for ticket
     watchers: another.dude    # Comaseparated list of Jira IDs for watchers
     jira_epic_key: XYZC-123   # Jira epic key (or id)
-    min_priority: Major       # Min priority level to create jira ticket.
-                              # default - Major
   emails:
     smtp_server: smtp.office.com    # smtp server address
     port: 587                       # smtp server port
