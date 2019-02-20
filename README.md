@@ -37,16 +37,29 @@ Report is located in your `your_local_path_to_reports` folder
 
 ### Configuration
 Scans can be configured using `scan-config.yaml` file.
+By default scan-config.yaml is in `/tmp` folder.
+```
+-v <path_to_local_folder>/scan-config.yaml:/tmp/scan-config.yaml
+```
+It is possible to specify path to config using `config_path` environment variable.
+```
+-e config_path=/example_folder/example_config.yaml
+-v <path_to_local_folder>/scan-config.yaml:/example_folder/example_config.yaml
+``` 
 
 ##### scan-config.yaml structure
 ```
 basic: # Name of the scan
   # General configuration section
+  code_path: $code_path       # path to folder with code to scan. Default - /code
   target_host: $host          # host to scan (e.g. my.domain.com)
   target_port: $port          # port where it is hosted (e.g. 443)
   protocol: $protocol         # http or https
   project_name: $project_name # the name of the project used in reports
   environment: $environment   # literal name of environment (e.g. prod/stage/etc.)
+  min_priority: Major         # Min priority level to process vulnerability.
+                              # default - Major
+                              # possible: Trivial, Minor, Major, Critical, Blocker
   
   # Reporting configuration section (all report types are optional)
   html_report: true           # do you need an html report (true/false)
@@ -66,8 +79,6 @@ basic: # Name of the scan
     labels: some,label        # Comaseparated list of lables for ticket
     watchers: another.dude    # Comaseparated list of Jira IDs for watchers
     jira_epic_key: XYZC-123   # Jira epic key (or id)
-    min_priority: Major       # Min priority level to create jira ticket.
-                              # default - Major
   emails:
     smtp_server: smtp.office.com    # smtp server address
     port: 587                       # smtp server port
@@ -123,9 +134,16 @@ configuration can be mounted to container like
 ```
 
 ##### False positive filtering configuration
-User need to fill `false_positive.config` file with titles of false-positive issues and mount it to container
+User need to fill `false_positive.config` file with hash-codes of false-positive issues and mount it to container
+By default false_positive.config is in `/tmp` folder.
 ```
 -v <path_to_local_folder>/false_positive.config:/tmp/false_positive.config
 ```
+It is possible to specify path to config using `false_positive_path` environment variable. 
+```
+-e false_positive_path=/example_folder/example_false_positive.config
+-v <path_to_local_folder>/false_positive.config:/example_folder/example_false_positive.config
+```
 
 ##### Please note that `scan-config.yaml` and `false_positive.config` included for demo purposes
+
