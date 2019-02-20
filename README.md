@@ -37,11 +37,21 @@ Report is located in your `your_local_path_to_reports` folder
 
 ### Configuration
 Scans can be configured using `scan-config.yaml` file.
+By default scan-config.yaml is in `/tmp` folder.
+```
+-v <path_to_local_folder>/scan-config.yaml:/tmp/scan-config.yaml
+```
+It is possible to specify path to config using `config_path` environment variable.
+```
+-e config_path=/example_folder/example_config.yaml
+-v <path_to_local_folder>/scan-config.yaml:/example_folder/example_config.yaml
+``` 
 
 ##### scan-config.yaml structure
 ```
 basic: # Name of the scan
   # General configuration section
+  code_path: $code_path       # path to folder with code to scan. Default - /code
   target_host: $host          # host to scan (e.g. my.domain.com)
   target_port: $port          # port where it is hosted (e.g. 443)
   protocol: $protocol         # http or https
@@ -124,9 +134,15 @@ configuration can be mounted to container like
 ```
 
 ##### False positive filtering configuration
-User need to fill `false_positive.config` file with titles of false-positive issues and mount it to container
+User need to fill `false_positive.config` file with hash-codes of false-positive issues and mount it to container
+By default false_positive.config is in `/tmp` folder.
 ```
 -v <path_to_local_folder>/false_positive.config:/tmp/false_positive.config
+```
+It is possible to specify path to config using `false_positive_path` environment variable. 
+```
+-e false_positive_path=/example_folder/example_false_positive.config
+-v <path_to_local_folder>/false_positive.config:/example_folder/example_false_positive.config
 ```
 
 ##### Please note that `scan-config.yaml` and `false_positive.config` included for demo purposes
