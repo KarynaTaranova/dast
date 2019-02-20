@@ -22,7 +22,7 @@ RUN apt-get -qq install -y --no-install-recommends default-jre default-jdk xvfb 
             xz-utils tk-dev libffi-dev liblzma-dev perl libnet-ssleay-perl python-dev python-pip \
             libxslt1-dev libxml2-dev libyaml-dev openssh-server  python-lxml wget \
             xdot python-gtk2 python-gtksourceview2 dmz-cursor-theme supervisor \
-            python-setuptools && \
+            python-setuptools apt-transport-https gnupg2 && \
     pip install pip setuptools --upgrade && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists
