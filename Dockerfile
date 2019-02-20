@@ -27,6 +27,14 @@ RUN apt-get -qq install -y --no-install-recommends default-jre default-jdk xvfb 
     apt-get clean && \
     rm -rf /var/lib/apt/lists
 
+# Installing docker for Authenticated scans
+RUN curl -fsSL https://download.docker.com/linux/debian/gpg | apt-key add -
+RUN apt-key fingerprint 0EBFCD88
+RUN echo "deb [arch=amd64] https://download.docker.com/linux/debian \
+     stretch stable" | \
+	 tee /etc/apt/sources.list.d/docker.list
+RUN apt-get -qq update && apt-get install -y --no-install-recommends docker-ce
+
 # Installing NodeJS for W3AF
 RUN curl -sL https://deb.nodesource.com/setup_10.x | bash -
 RUN apt-get -qq install -y --no-install-recommends nodejs
