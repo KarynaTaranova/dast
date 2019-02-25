@@ -74,7 +74,14 @@ RUN pip3 install setuptools  --upgrade
 RUN pip3 --version
 RUN pip3 install sslyze==${SSLYZE_VERSION} && python3 -m sslyze --update_trust_stores
 
-ENV PATH /opt/jdk-10.0.2/bin:/opt/arachni:/opt/masscan/bin:/opt/nikto/program:/opt/zap/ZAP_${ZAP_VERSION}:/opt/w3af:$PATH
+# Installing aem-hacker
+RUN cd /opt && git clone https://github.com/0ang3el/aem-hacker.git && cd aem-hacker/ && \
+    pip3 install --upgrade -r requirements.txt && \
+    echo '#!/bin/bash' > /opt/aem-hacker/aem-wrapper.sh && \
+    echo 'python3 /opt/aem-hacker/aem_hacker.py $*' >> /opt/aem-hacker/aem-wrapper.sh && \
+    chmod a+x *.py *.sh
+
+ENV PATH /opt/jdk-10.0.2/bin:/opt/arachni:/opt/masscan/bin:/opt/nikto/program:/opt/zap/ZAP_${ZAP_VERSION}:/opt/w3af:/opt/aem-hacker:$PATH
 
 WORKDIR /tmp
 RUN mkdir /tmp/reports
