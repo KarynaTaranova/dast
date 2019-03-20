@@ -95,7 +95,7 @@ basic: # Name of the scan
                                     # that will be shown in the email,
                                     # separated ', '. default [Open, In Progress]
       
-  # Scanners configurtion section (you can use only what you need)
+  # Scanners configuration section (you can use only what you need)
   sslyze: true                # set to `true` in order to scan for ssl errors
   nmap:                       # nmap configuration
     inclusions: T:0-1000      # ports to scan
@@ -113,6 +113,13 @@ basic: # Name of the scan
   w3af:                       # w3af configuration
     # path to w3af configuraion within container
     config_file: /tmp/w3af_full_audit.w3af
+  aemhacker:                  # AEM Hacker configuration
+    scanner_host: 127.0.0.1   # IP of scanner instance
+                              # needed for SSRF detection
+                              # can be 127.0.0.1 (SSRF vulns will not be detected)
+    scanner_port: 4444        # scanner port to use during SSRF detection
+                              # to run SSRF detection this port must be accessible
+                              # e.g. use docker run --publish 4444:4444 <...>
   # Qualys WAS integration in tricky and 
   # require couple of secrets to be prebuilt into container
   # you will need to set QUALYS_LOGIN, QUALYS_PASSWORD and
@@ -126,7 +133,6 @@ basic: # Name of the scan
     qualys_scanner_type: INTERNAL | EXTERNAL 
     # In case you use INTERNAL you will need:
     qualys_scanner: NAME_OF_SCANNER
-  
 ```
 configuration can be mounted to container like 
 ```
