@@ -152,4 +152,14 @@ It is possible to specify path to config using `false_positive_path` environment
 ```
 
 ##### Please note that `scan-config.yaml` and `false_positive.config` included for demo purposes
-
+   
+#### Jira test
+Use next command to create test ticket.
+```
+jira_check -s {test_name}
+```
+One test jira ticker will be created using config settings.
+To delete test ticket use (use user and password to provide account that can delete tickets):
+```
+jira_check -s {test_name} -d TICKET_KEY -u user -p password
+```
