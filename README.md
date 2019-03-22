@@ -70,18 +70,15 @@ basic: # Name of the scan
     rp_project_name: XXXXXX   # Name of a Project in ReportPortal to send results to
     rp_launch_name: XXXXXXX   # Name of a Launch in ReportPortal to send results to
   jira:
-    url: https://jira.com          # Url to Jira
-    username: some.dude            # User to create tickets
-    password: password             # password to user in Jira
-    project: XYZC                  # Jira project ID
-    fields:
-      assignee: some.dude          # Jira id of default assignee
-      issue_type: Bug              # Jira issue type (Default: Bug)
-      epic_link: XYZC-123          # Jira epic key (or id)
-      labels: some,label           # Comaseparated list of lables for ticket
-      watchers: 
-        'some.dude, another.dude'  # Comaseparated list of Jira IDs for watchers      
-      Story Points: some value     # Another custom field. Name or id can be used
+    url: https://jira.com     # Url to Jira
+    username: some.dude       # User to create tickets
+    password: password        # password to user in Jira
+    jira_project: XYZC        # Jira project ID
+    assignee: some.dude       # Jira id of default assignee
+    issue_type: Bug           # Jira issue type (Default: Bug)
+    labels: some,label        # Comaseparated list of lables for ticket
+    watchers: another.dude    # Comaseparated list of Jira IDs for watchers
+    jira_epic_key: XYZC-123   # Jira epic key (or id)
   emails:
     smtp_server: smtp.office.com    # smtp server address
     port: 587                       # smtp server port
@@ -142,31 +139,6 @@ configuration can be mounted to container like
 -v <path_to_local_folder>/scan-config.yaml:/tmp/scan-config.yaml
 ```
 
-##### Jira congifuration
-There are some fields in a ticket that has default value:
-- issuetype: Bug
-- summary: `!default_summary`
-- description: `!default_description`
-- priority: `!default_priority`
-
-It is possible to remove default field from ticket by using `!remove` option:
-```  
-jira:
-  description: !remove
-```
-It is possible to use default values to fill other ticket fields:
-```  
-jira:
-  labels: !default_priority
-  description: Some aditional text. !default_description. !default_summary
-```
-Also custom fields can be added to a ticket:
-```  
-jira:
-  Story Points: some value
-```
-Custom field `name` can be used as well as field `id`.
-
 ##### False positive filtering configuration
 User need to fill `false_positive.config` file with hash-codes of false-positive issues and mount it to container
 By default false_positive.config is in `/tmp` folder.
@@ -180,4 +152,14 @@ It is possible to specify path to config using `false_positive_path` environment
 ```
 
 ##### Please note that `scan-config.yaml` and `false_positive.config` included for demo purposes
-
+   
+#### Jira test
+Use next command to create test ticket.
+```
+jira_check -s {test_name}
+```
+One test jira ticker will be created using config settings.
+To delete test ticket use (use user and password to provide account that can delete tickets):
+```
+jira_check -s {test_name} -d TICKET_KEY -u user -p password
+```
